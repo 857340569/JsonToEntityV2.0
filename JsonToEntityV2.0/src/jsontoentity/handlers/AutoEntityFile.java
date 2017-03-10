@@ -13,7 +13,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import jsontoentity.handlers.JsonCheck.JSON_TYPE;
+import jsontoentity.utils.JsonCheck;
+import jsontoentity.utils.StringUtils;
+import jsontoentity.utils.JsonCheck.JSON_TYPE;
 /**
  * 自动生成entity 文件，只支持jsonobject
  * @author zhang
@@ -95,7 +97,6 @@ public class AutoEntityFile {
 	{
 		if(StringUtils.isEmpty(json))return "";
 		JSON_TYPE jsonType= JsonCheck.getJSONType(json);
-		System.out.println(jsonType);
 		String entityContent="";
 		className=StringUtils.isEmpty(className)?"EntityClass":className;
 		entityContent+="public class "+className+"{\n";
@@ -113,7 +114,14 @@ public class AutoEntityFile {
 				{
 					keys.add(key);
 					entityContent+="    private String "+key+";\n";
-				}else if(element.isJsonArray())
+				}else if(element.isJsonObject())
+				{
+					String innerClassName=(key.charAt(0)+"").toUpperCase()+key.substring(1);
+					entityContent+="    private "+innerClassName+" "+key+";\n";
+					entityContent+=getSetterGetterStrs(innerClassName,key);
+					entityContent+=getEntityContent(element.toString(),innerClassName);
+				}
+				else if(element.isJsonArray())
 				{
 					JsonArray jsonArray=element.getAsJsonArray();
 					entityContent+=dealJsonArray(jsonArray,key);
@@ -169,6 +177,9 @@ public class AutoEntityFile {
 		}
 		return entityContent;
 	}
+	
+//	private static String dealJsonObject() {}
+	
 	/**
 	 * 获取getter setter 方法
 	 * @param returnTypeStr

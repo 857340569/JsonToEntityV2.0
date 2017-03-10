@@ -1,4 +1,4 @@
-package jsontoentity.handlers;
+package jsontoentity.utils;
 
 /**
  * 
