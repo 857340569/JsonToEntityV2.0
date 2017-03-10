@@ -21,7 +21,7 @@ public class OperHandler extends AbstractHandler {
 		 IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
 		if(frame==null)
 		{
-			frame= new JsonToEntityV2("Json to entity");
+			frame= new JsonToEntityV2("Json To Entity Tools");
 		}
 		frame.setVisible(true);
 		// MessageDialog.openInformation(window.getShell(), "信息提示", "msg");

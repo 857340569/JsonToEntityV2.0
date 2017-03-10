@@ -46,13 +46,14 @@ public class JsonToEntityV2 extends BaseFrame {
 	public JsonToEntityV2(String title) {
 		setTitle(title);
 		setResizable(false);
-		setIconImage(getImageInPluginsEnv("images/tools_icon.jpg").getImage());
+		//若想直接运行，需要把images 放到src 目录下
+		setIconImage(getImageIcon("/images/tools_icon.jpg").getImage());
 		//不能用EXIT_ON_CLOSE eclipse 会退出
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setSize(534, 416);
 //		contentPane = new JPanel();
-		contentPane = createImgBgPanel(getImageInPluginsEnv("images/main_bg.jpg"));
+		contentPane = createImgBgPanel(getImageIcon("/images/main_bg.jpg"));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
