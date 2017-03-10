@@ -9,7 +9,7 @@
             id="JsonToEntity.commands.category">
       </category>
       <command
-            name="Sample Command"
+            name="JsonToEntityV2.0"
             categoryId="JsonToEntity.commands.category"
             id="JsonToEntity.commands.sampleCommand">
       </command>
@@ -26,7 +26,7 @@
       <key
             commandId="JsonToEntity.commands.sampleCommand"
             contextId="org.eclipse.ui.contexts.window"
-            sequence="M1+7"
+            sequence="M1+6"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
       </key>
    </extension>

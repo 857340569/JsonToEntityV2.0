@@ -1,4 +1,4 @@
-package jsontoentity.handlers;
+package jsontoentity.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -17,6 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import jsontoentity.handlers.AutoEntityFile;
+import jsontoentity.utils.StringUtils;
+@Deprecated
 public class CreateEntityFrame extends JFrame implements ActionListener {
 	private JButton buttonCreate;
 	private JTextField classNameView,jsonView;
@@ -71,21 +74,12 @@ public class CreateEntityFrame extends JFrame implements ActionListener {
 		String jsonStr=jsonView.getText();
 //		String data=AutoEntityFile.createFileFromJson(jsonStr, className,false);
 		String data=AutoEntityFile.getEntityContent(jsonStr, className);
-		setSystemClipboard(data);
+		StringUtils.setSystemClipboard(data);
 		consoleView.setText(data);
 	}
 	
 	private static Dimension getWindowScreenSize() {
 		return Toolkit.getDefaultToolkit().getScreenSize();
 	}
-	public static void setSystemClipboard(String refContent){   
-		//设置为static是为了直接使用，不用new一个该类的实例即可直接使用,即定义的: 类名.方法名  
-		    String vc = refContent.trim();  
-		    StringSelection ss = new StringSelection(vc);  
-		      
-		    Clipboard sysClb=null;  
-		    sysClb = Toolkit.getDefaultToolkit().getSystemClipboard();  
-		    sysClb.setContents(ss,null);  
-		       
-		}
+	
 }
