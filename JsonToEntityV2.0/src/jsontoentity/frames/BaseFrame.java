@@ -33,17 +33,29 @@ public class BaseFrame extends JFrame{
 	}
 	
 	/**
-	 * 在插件环境中获取图片内容
+	 * 在插件环境中获取图片内容,未获取成功
 	 * @param imagePath
 	 * @return
 	 */
+	@Deprecated
 	protected ImageIcon getImageInPluginsEnv(String imagePath) {
 		String pluginId="JsonToEntityV2.0";
 		ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin(pluginId,imagePath);
 		ImageIcon imageIcon=new ImageIcon(descriptor.getImageData().data);
 		return imageIcon;
 	}
-	
+
+	/**
+	 * 获取图片工程中图片
+	 * @param imagePath 注意/images/main_bg.jpg 与 images/main_bg.jpg 不同
+	 * 					多一个"/" 表示类路径（包括包名）所在的位置 。打包成jar 也必须要用"/"
+	 * 					否则表示<包名(jsontoentity/frames)/images/main_bg.jpg>
+	 * @return
+	 */
+	protected ImageIcon getImageIcon(String imagePath) {
+		ImageIcon imageIcon=new ImageIcon(getClass().getResource(imagePath));
+		return imageIcon;
+	}
 	protected DrawBg createImgBgPanel(ImageIcon image)
 	{
 		DrawBg drawBg=new DrawBg(image.getImage());
